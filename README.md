@@ -2,6 +2,7 @@
 
 [![Gem](https://img.shields.io/gem/v/qpay-rails)](https://rubygems.org/gems/qpay-rails)
 [![CI](https://github.com/qpay-sdk/qpay-rails/actions/workflows/ci.yml/badge.svg)](https://github.com/qpay-sdk/qpay-rails/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 QPay V2 payment integration for Rails.
 
