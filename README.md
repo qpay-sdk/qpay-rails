@@ -1,5 +1,8 @@
 # QPay Rails
 
+[![Gem](https://img.shields.io/gem/v/qpay-rails)](https://rubygems.org/gems/qpay-rails)
+[![CI](https://github.com/qpay-sdk/qpay-rails/actions/workflows/ci.yml/badge.svg)](https://github.com/qpay-sdk/qpay-rails/actions)
+
 QPay V2 payment integration for Rails.
 
 ## Install
