@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "qpay-rails"
-  s.version     = "1.0.0"
+  s.version     = "1.0.1"
   s.summary     = "QPay V2 payment integration for Rails"
   s.description = "Rails engine for QPay V2 payment API with view helpers and webhook support"
   s.authors     = ["QPay SDK"]
