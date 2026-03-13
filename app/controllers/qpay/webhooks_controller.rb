@@ -1,31 +1,28 @@
 module QPay
   class WebhooksController < ActionController::API
-    def create
-      invoice_id = params[:invoice_id]
+    def show
+      payment_id = params[:qpay_payment_id]
 
-      unless invoice_id.present?
-        render json: { error: "Missing invoice_id" }, status: :bad_request
+      unless payment_id.present?
+        render plain: "ERROR", status: :bad_request
         return
       end
 
       begin
         client = QPay::Rails.client
-        result = client.check_payment(
-          object_type: "INVOICE",
-          object_id: invoice_id
-        )
+        result = client.get_payment(payment_id)
 
-        if result.rows&.any?
+        if result&.payment_status == "PAID"
           ActiveSupport::Notifications.instrument("payment_received.qpay", {
-            invoice_id: invoice_id,
+            payment_id: payment_id,
             result: result
           })
-          render json: { status: "paid" }
-        else
-          render json: { status: "unpaid" }
         end
+
+        render plain: "SUCCESS", status: :ok
       rescue StandardError => e
-        render json: { error: e.message }, status: :internal_server_error
+        ::Rails.logger.error("[QPay] Callback verification failed: #{e.message}")
+        render plain: "SUCCESS", status: :ok
       end
     end
   end

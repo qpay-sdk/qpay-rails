@@ -1,3 +1,3 @@
 QPay::Rails::Engine.routes.draw do
-  post "webhooks", to: "webhooks#create"
+  get "webhooks", to: "webhooks#show"
 end

@@ -37,11 +37,14 @@ invoice = client.create_simple_invoice(
 
 ## Webhook
 
+QPay sends a `GET` request with `?qpay_payment_id=...` when payment is completed. The engine handles verification automatically.
+
 Subscribe to payment events:
 
 ```ruby
 ActiveSupport::Notifications.subscribe("payment_received.qpay") do |_name, _start, _finish, _id, payload|
-  invoice_id = payload[:invoice_id]
+  payment_id = payload[:payment_id]
+  result = payload[:result] # QPay::PaymentDetail
   # handle payment
 end
 ```
